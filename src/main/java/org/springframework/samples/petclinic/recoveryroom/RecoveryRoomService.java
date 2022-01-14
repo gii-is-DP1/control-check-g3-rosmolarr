@@ -2,25 +2,36 @@ package org.springframework.samples.petclinic.recoveryroom;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class RecoveryRoomService {
+
+    @Autowired
+    private RecoveryRoomRepository recoveryRoomRepository;
+
     public List<RecoveryRoom> getAll(){
-        return null;
+        return this.recoveryRoomRepository.findAll();
     }
 
     public List<RecoveryRoomType> getAllRecoveryRoomTypes(){
-        return null;
+        return this.recoveryRoomRepository.findAllRecoveryRoomTypes();
     }
 
     public RecoveryRoomType getRecoveryRoomType(String typeName) {
-        return null;
+        return this.recoveryRoomRepository.getRecoveryRoomType(typeName);
     }
 
     public List<RecoveryRoom> getRecoveryRoomsBiggerThan(double size) {
-        return null;
+        return this.recoveryRoomRepository.findBySizeMoreThan(size);
     }
 
+    @Transactional
     public RecoveryRoom save(RecoveryRoom p) {
-        return null;       
+        return this.recoveryRoomRepository.save(p);       
     }
 
     
