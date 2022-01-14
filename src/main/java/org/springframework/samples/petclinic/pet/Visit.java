@@ -25,6 +25,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 
+import org.springframework.boot.jta.atomikos.AtomikosProperties.Recovery;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.recoveryroom.RecoveryRoom;
@@ -58,6 +59,10 @@ public class Visit extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
+
+	@ManyToOne
+	@JoinColumn(name = "recovery_room_id")
+	RecoveryRoom recoveryRoom;
 
 	/**
 	 * Creates a new instance of Visit for the current date
@@ -116,11 +121,10 @@ public class Visit extends BaseEntity {
 
 	public RecoveryRoom getRecoveryRoom() {
 		// To be implemented
-		return null;
+		return this.recoveryRoom;
 	}
 
 	public void setRecoveryRoom(RecoveryRoom room) {
-		// To be implemented
+		this.recoveryRoom = room;
 	}
-
 }
